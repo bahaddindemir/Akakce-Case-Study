@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Akakce Case Study</string>
+
+    <!-- General Strings -->
+    <string name="welcome">Welcome</string>
+    <string name="hide">Hide</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="no_internet">No internet connection please try again later</string>
+    <string name="cancel">Cancel</string>
+    <string name="some_error">Some error occurred, try again later</string>
+    <string name="list_no_result">Sorry, There are no results here!</string>
+    <string name="hashtag">#</string>
+    <string name="title">Title</string>
+</resources>
