@@ -35,11 +35,3 @@ fun bindFollowCount(view: TextView, int: Int) {
     view.text = followCount
   }
 }
-
-@BindingAdapter("bindDetailCountOfPrices")
-fun bindDetailCountOfPrices(view: TextView, int: Int) {
-  int.let {
-    val followCount = "$it satıcı içinde kargo dahil en ucuz fiyat seçeneği"
-    view.text = followCount
-  }
-}

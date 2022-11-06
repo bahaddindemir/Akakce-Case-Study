@@ -5,13 +5,16 @@ import com.bahaddindemir.akakcecasestudy.data.model.ApiResponse
 import com.bahaddindemir.akakcecasestudy.data.model.product.DetailScreenResult
 import com.bahaddindemir.akakcecasestudy.data.model.product.MainResult
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface ApiService {
   @GET(PRODUCTS)
+  @Headers("Accept: application/json")
   fun getProductList(): LiveData<ApiResponse<MainResult>>
 
   @GET(DETAIL)
+  @Headers("Accept: application/json")
   fun getProductDetail(@Query("code") code: Int): LiveData<ApiResponse<DetailScreenResult>>
 
   companion object {
