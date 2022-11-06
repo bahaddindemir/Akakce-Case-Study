@@ -2,6 +2,7 @@ package com.bahaddindemir.akakcecasestudy.ui.viewholder
 
 import android.view.View
 import com.bahaddindemir.akakcecasestudy.data.model.product.Product
+import com.bahaddindemir.akakcecasestudy.databinding.ItemProductBinding
 import com.bahaddindemir.akakcecasestudy.ui.base.BaseViewHolder
 import com.bahaddindemir.akakcecasestudy.util.bindings
 
@@ -11,16 +12,16 @@ class ProductViewHolder (view: View, private val delegate: Delegate) : BaseViewH
   }
 
   private lateinit var productItem: Product
-  //private val binding by bindings<ItemCoinBinding>(view)
+  private val binding by bindings<ItemProductBinding>(view)
 
   override fun bindData(data: Any) {
     if (data is Product) {
       productItem = data
 
-      //binding.apply {
-      //  productItem = data
-      //  executePendingBindings()
-      //}
+      binding.apply {
+        productItem = data
+        executePendingBindings()
+      }
     }
   }
 

@@ -52,3 +52,7 @@ fun setImageWithGlide(view: ImageView, imageUrl: String?) {
        .load(imageUrl)
        .into(view)
 }
+
+fun convertToPrice(int: Int): String {
+  return (String.format("%,d", int))
+}

@@ -8,5 +8,5 @@ import com.bahaddindemir.akakcecasestudy.data.model.product.MainResult
 interface ProductRepository {
   suspend fun getProductList() : LiveData<ApiResponse<MainResult>>
 
-  suspend fun getProductDetail(productCode: String) : LiveData<ApiResponse<DetailScreenResult>>
+  suspend fun getProductDetail(productCode: Int) : LiveData<ApiResponse<DetailScreenResult>>
 }

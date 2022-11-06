@@ -9,6 +9,9 @@
     <string name="cancel">Cancel</string>
     <string name="some_error">Some error occurred, try again later</string>
     <string name="list_no_result">Sorry, There are no results here!</string>
-    <string name="hashtag">#</string>
-    <string name="title">Title</string>
+    <string name="storage_options">Storage options:</string>
+    <string name="free_shipping">Free shipping</string>
+    <string name="last_update">Last update: %1$s</string>
+    <string name="price_string">%1$s TL</string>
+    <string name="detail_count_of_prices">%1$d satıcı içinde kargo dahil en ucuz fiyat seçeneği</string>
 </resources>

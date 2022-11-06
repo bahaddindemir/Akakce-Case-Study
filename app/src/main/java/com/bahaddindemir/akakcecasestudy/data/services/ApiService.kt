@@ -12,7 +12,7 @@ interface ApiService {
   fun getProductList(): LiveData<ApiResponse<MainResult>>
 
   @GET(DETAIL)
-  fun getProductDetail(@Query("code") code: String): LiveData<ApiResponse<DetailScreenResult>>
+  fun getProductDetail(@Query("code") code: Int): LiveData<ApiResponse<DetailScreenResult>>
 
   companion object {
     const val PRODUCTS = "59906f35-d5d5-40f7-8d44-53fd26eb3a05"

@@ -19,7 +19,7 @@ class ProductRepositoryImpl @Inject constructor(private val apiService: ApiServi
     }
   }
 
-  override suspend fun getProductDetail(productCode: String): LiveData<ApiResponse<DetailScreenResult>> {
+  override suspend fun getProductDetail(productCode: Int): LiveData<ApiResponse<DetailScreenResult>> {
     return withContext(Dispatchers.IO) {
       return@withContext apiService.getProductDetail(productCode)
     }
