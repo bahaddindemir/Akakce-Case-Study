@@ -9,22 +9,29 @@
             type="com.bahaddindemir.akakcecasestudy.ui.home.HomeViewModel" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:adapterHorizontalProduct="@{viewModel.productLiveData.body}"
+            tools:listitem="@layout/item_horizontal_product"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productRecycler"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:visibility="gone"
-            android:background="@color/grey"
+            android:layout_below="@id/viewpager"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             app:adapterProduct="@{viewModel.productLiveData.body}"
             tools:visibility="visible"
             tools:listitem="@layout/item_product" />
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </layout>

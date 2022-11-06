@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="productItem"
+            type="com.bahaddindemir.akakcecasestudy.data.model.product.HorizontalProduct" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            app:bindingProductImageUrl="@{productItem.imageUrl}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/ic_launcher_foreground"/>
+
+        <TextView
+            android:id="@+id/productDropRatio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/circle"
+            android:gravity="center"
+            android:textAlignment="center"
+            app:bindDropRatio="@{productItem.dropRatio}"
+            app:layout_constraintStart_toEndOf="@id/productImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="@{productItem.name}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/productDropRatio" />
+
+        <TextView
+            android:id="@+id/productPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            app:bindPrice="@{productItem.price}"
+            app:layout_constraintTop_toBottomOf="@id/productName"
+            app:layout_constraintStart_toEndOf="@id/productDropRatio"/>
+
+        <TextView
+            android:id="@+id/productCountOfPrices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            app:bindCountOfPrice="@{productItem.countOfPrices}"
+            app:layout_constraintTop_toBottomOf="@id/productPrice"
+            app:layout_constraintStart_toEndOf="@id/productDropRatio"/>
+
+        <TextView
+            android:id="@+id/productFollowCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            app:bindFollowCount="@{productItem.followCount}"
+            app:layout_constraintTop_toBottomOf="@id/productCountOfPrices"
+            app:layout_constraintStart_toEndOf="@id/productDropRatio"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

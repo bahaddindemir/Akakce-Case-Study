@@ -6,7 +6,7 @@ import com.bahaddindemir.akakcecasestudy.databinding.ItemProductBinding
 import com.bahaddindemir.akakcecasestudy.ui.base.BaseViewHolder
 import com.bahaddindemir.akakcecasestudy.util.bindings
 
-class ProductViewHolder (view: View, private val delegate: Delegate) : BaseViewHolder(view) {
+class ProductViewHolder(view: View, private val delegate: Delegate) : BaseViewHolder(view) {
   interface Delegate {
     fun onItemClick(productItem: Product, view: View)
   }

@@ -17,9 +17,6 @@ class HomeViewModel @Inject constructor(private val productRepository: ProductRe
     }
   }
 
-  private var horizontalProducts: MutableLiveData<Int>    = MutableLiveData()
-  private var products:           MutableLiveData<String> = MutableLiveData()
-
   val productLiveData: LiveData<ApiResponse<MainResult>> = launchOnViewModelScope {
     productRepository.getProductList()
   }

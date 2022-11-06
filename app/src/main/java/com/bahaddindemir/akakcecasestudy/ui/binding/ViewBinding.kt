@@ -23,7 +23,7 @@ fun bindPrice(view: TextView, double: Double) {
 @BindingAdapter("bindCountOfPrice")
 fun bindCountOfPrice(view: TextView, int: Int) {
   int.let {
-    val countOfPrice = "$it satıcı"
+    val countOfPrice = "$it satıcı >"
     view.text = countOfPrice
   }
 }

@@ -4,7 +4,6 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.bahaddindemir.akakcecasestudy.R
 import com.bahaddindemir.akakcecasestudy.data.model.product.DetailResult
-import com.bahaddindemir.akakcecasestudy.data.model.product.Product
 import com.bahaddindemir.akakcecasestudy.databinding.FragmentDetailBinding
 import com.bahaddindemir.akakcecasestudy.extension.showError
 import com.bahaddindemir.akakcecasestudy.ui.base.BaseFragment
@@ -16,16 +15,14 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailFragment : BaseFragment<FragmentDetailBinding>() {
   private val viewModel: DetailViewModel by viewModels()
 
-  private lateinit var productItem: Product
-
   override fun getLayoutId() = R.layout.fragment_detail
 
   override fun getFragmentArguments() {
     super.getFragmentArguments()
     val bundle = arguments
     bundle?.let {
-      productItem = it.get("productItem") as Product
-      loadCoinDetail(productItem)
+      val productCode = it.get("productCode") as Int
+      loadCoinDetail(productCode)
     }
   }
 
@@ -74,9 +71,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     binding.storageOption3.text = options[2]
   }
 
-  private fun loadCoinDetail(productItem: Product?) {
-    productItem?.let {
-      viewModel.postProductDetailId(it.code!!)
+  private fun loadCoinDetail(int: Int) {
+    int.let {
+      viewModel.postProductDetailId(it)
     }
   }
 }
