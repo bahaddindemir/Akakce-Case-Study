@@ -9,4 +9,6 @@ interface ProductRepository {
   suspend fun getProductList() : LiveData<ApiResponse<MainResult>>
 
   suspend fun getProductDetail(productCode: Int) : LiveData<ApiResponse<DetailScreenResult>>
+
+  suspend fun getNextProductList(nextUrl: String) : LiveData<ApiResponse<MainResult>>
 }

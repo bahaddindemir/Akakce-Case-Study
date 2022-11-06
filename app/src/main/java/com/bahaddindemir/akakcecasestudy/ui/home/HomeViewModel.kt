@@ -17,7 +17,16 @@ class HomeViewModel @Inject constructor(private val productRepository: ProductRe
     }
   }
 
+  private var nextProductListPage: MutableLiveData<String> = MutableLiveData()
+
   val productLiveData: LiveData<ApiResponse<MainResult>> = launchOnViewModelScope {
     productRepository.getProductList()
+  }
+  val nextProductLiveData: LiveData<ApiResponse<MainResult>> = nextProductListPage.switchMap {
+    launchOnViewModelScope { productRepository.getNextProductList(it) }
+  }
+
+  fun getNextResult(nextUrl: String) {
+    nextProductListPage.postValue(nextUrl)
   }
 }

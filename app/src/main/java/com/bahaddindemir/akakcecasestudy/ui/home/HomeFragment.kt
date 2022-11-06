@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.bahaddindemir.akakcecasestudy.R
 import com.bahaddindemir.akakcecasestudy.data.model.product.HorizontalProduct
 import com.bahaddindemir.akakcecasestudy.data.model.product.Product
@@ -22,6 +23,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ProductViewHolder.Dele
   private val viewModel: HomeViewModel by viewModels()
   private var productAdapter           = ProductAdapter(this)
   private var horizontalProductAdapter = HorizontalProductAdapter(this)
+  private var nextUrl = ""
 
   override fun getLayoutId() = R.layout.fragment_home
 
@@ -31,22 +33,52 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ProductViewHolder.Dele
     binding.viewpager.adapter = horizontalProductAdapter
   }
 
+  override fun setUpViews() {
+    binding.productRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+      override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        super.onScrollStateChanged(recyclerView, newState)
+
+        if (!recyclerView.canScrollVertically(1) && nextUrl.isNotEmpty()) {
+          getNextResults(nextUrl)
+          nextUrl = ""
+        }
+      }
+    })
+  }
+
   override fun setupObservers() {
     observeProductResource()
   }
 
   private fun observeProductResource() {
     viewModel.productLiveData.observe(viewLifecycleOwner) { resource ->
-      Log.w("bahaddin", resource.body?.result.toString())
+      Log.w(tag, resource.body?.result.toString())
       showLoading()
       if (resource.isSuccessful) {
         hideLoading()
         binding.productRecycler.visibility = View.VISIBLE
+
+        resource.body?.result?.nextUrl?.let {
+          nextUrl = it
+        }
       } else {
         hideLoading()
         showError(getString(R.string.some_error))
       }
     }
+    viewModel.nextProductLiveData.observe(viewLifecycleOwner) { resource ->
+      if (resource.isSuccessful) {
+        productAdapter.addProductItemList(resource.body?.result?.products)
+
+        resource.body?.result?.nextUrl?.let {
+          nextUrl = it
+        }
+      }
+    }
+  }
+
+  private fun getNextResults(nextUrl: String) {
+    viewModel.getNextResult(nextUrl)
   }
 
   override fun onItemClick(productItem: Product, view: View) {
