@@ -34,14 +34,6 @@ fun View.invisible() {
   }
 }
 
-@BindingAdapter("app:goneUnless")
-fun View.goneUnless(visible: Boolean) {
-  visibility = if (visible) View.VISIBLE else View.GONE
-  if (this is Group) {
-    this.requestLayout()
-  }
-}
-
 fun View.enable() {
   isEnabled = true
   alpha = 1f
@@ -55,7 +47,7 @@ fun View.disable() {
 fun View.showSnackBar(message: String, retryActionName: String? = null, action: (() -> Unit)? = null) {
   val snackBar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
 
-  val view: View = snackBar.getView()
+  val view: View = snackBar.view
   val params = view.layoutParams as FrameLayout.LayoutParams
   params.gravity = Gravity.TOP
   view.layoutParams = params

@@ -1,35 +1,23 @@
 package com.bahaddindemir.akakcecasestudy.ui.viewholder
 
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.bahaddindemir.akakcecasestudy.data.model.product.Product
 import com.bahaddindemir.akakcecasestudy.databinding.ItemProductBinding
-import com.bahaddindemir.akakcecasestudy.ui.base.BaseViewHolder
-import com.bahaddindemir.akakcecasestudy.util.bindings
+import com.bahaddindemir.akakcecasestudy.ui.base.BaseAdapter
 
-class ProductViewHolder(view: View, private val delegate: Delegate) : BaseViewHolder(view) {
+class ProductViewHolder(private val binding: ItemProductBinding, private val delegate: Delegate) :
+  RecyclerView.ViewHolder(binding.root), BaseAdapter.Binder<Product> {
   interface Delegate {
     fun onItemClick(productItem: Product, view: View)
   }
 
-  private lateinit var productItem: Product
-  private val binding by bindings<ItemProductBinding>(view)
-
-  override fun bindData(data: Any) {
-    if (data is Product) {
+  override fun bind(data: Product) {
+    binding.apply {
       productItem = data
-
-      binding.apply {
-        productItem = data
-        executePendingBindings()
-      }
+      executePendingBindings()
     }
-  }
 
-  override fun onClick(view: View?) {
-    view?.let {
-      delegate.onItemClick(productItem, view)
-    }
+    itemView.setOnClickListener { delegate.onItemClick(data, view = it) }
   }
-
-  override fun onLongClick(v: View?): Boolean = false
 }
