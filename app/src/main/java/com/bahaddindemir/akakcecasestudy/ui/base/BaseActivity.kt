@@ -9,9 +9,9 @@ import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 
 abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity() {
-  private  var _binding: VB? = null
-  open     val binding get() = _binding!!
-  lateinit var navController: LiveData<NavController>
+  private          var _binding: VB? = null
+  open             val binding get() = _binding!!
+  private lateinit var navController: LiveData<NavController>
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

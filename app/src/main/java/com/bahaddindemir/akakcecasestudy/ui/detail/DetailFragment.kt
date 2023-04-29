@@ -21,7 +21,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     super.getFragmentArguments()
     val bundle = arguments
     bundle?.let {
-      val productCode = it.get("productCode") as Int
+      val productCode = it.getInt("productCode")
       loadCoinDetail(productCode)
     }
   }

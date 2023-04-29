@@ -2,19 +2,13 @@ package com.bahaddindemir.akakcecasestudy.util
 
 import android.app.Activity
 import android.app.Dialog
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.bahaddindemir.akakcecasestudy.R
 import com.bumptech.glide.Glide
-
-fun showMessage(context: Context, message: String?) {
-  Toast.makeText(context, message ?: context.resources.getString(R.string.some_error), Toast.LENGTH_SHORT).show()
-}
 
 fun showLoadingDialog(activity: Activity?, hint: String?): Dialog? {
   if (activity == null || activity.isFinishing) {
@@ -27,7 +21,7 @@ fun showLoadingDialog(activity: Activity?, hint: String?): Dialog? {
   }
   progressDialog.setContentView(R.layout.progress_dialog)
   val tvHint = progressDialog.findViewById<TextView>(R.id.tv_hint)
-  if (hint != null && hint.isNotEmpty()) {
+  if (!hint.isNullOrEmpty()) {
     tvHint.visibility = View.VISIBLE
     tvHint.text = hint
   } else {

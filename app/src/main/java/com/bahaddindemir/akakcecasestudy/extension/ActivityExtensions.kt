@@ -10,9 +10,3 @@ fun <A : Activity> Activity.openActivityAndClearStack(activity: Class<A>) {
     finish()
   }
 }
-
-fun <A : Activity> Activity.openActivity(activity: Class<A>) {
-  Intent(this, activity).apply {
-    startActivity(this)
-  }
-}
