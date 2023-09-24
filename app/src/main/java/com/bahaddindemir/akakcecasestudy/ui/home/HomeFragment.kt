@@ -91,6 +91,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ProductViewHolder.Dele
 
   private fun openProductDetail(code: Int?, view: View) {
     val bundle = bundleOf("productCode" to code)
-    view.findNavController().navigate(R.id.detail_fragment, bundle)
+    view.findNavController().navigate(R.id.action_homeFragment_to_detailFragment, bundle)
   }
 }
