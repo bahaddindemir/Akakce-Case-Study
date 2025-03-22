@@ -1,7 +1,6 @@
 package com.bahaddindemir.akakcecasestudy.di
 
 import com.bahaddindemir.akakcecasestudy.BuildConfig
-import com.bahaddindemir.akakcecasestudy.factory.LiveDataCallAdapterFactory
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -31,7 +30,6 @@ object RetrofitModule {
   fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
                                                                                   .client(okHttpClient)
                                                                                   .addConverterFactory(GsonConverterFactory.create(gson))
-                                                                                  .addCallAdapterFactory(LiveDataCallAdapterFactory())
                                                                                   .baseUrl(BuildConfig.API_BASE_URL)
                                                                                   .build()
 }

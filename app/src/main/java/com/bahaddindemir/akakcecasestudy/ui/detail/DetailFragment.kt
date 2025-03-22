@@ -33,11 +33,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
   private fun observeProductDetailData() {
     viewModel.productDetailLiveData.observe(viewLifecycleOwner) { resource ->
       showLoading()
-      if (resource.isSuccessful) {
+      if (resource != null) {
         hideLoading()
-        resource.body?.result?.let {
-          handleCoinDetailDataOnSuccess(it)
-        }
+        handleCoinDetailDataOnSuccess(resource.result)
       } else {
         hideLoading()
         showError(getString(R.string.some_error))

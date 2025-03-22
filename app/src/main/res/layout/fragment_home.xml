@@ -17,7 +17,7 @@
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:adapterHorizontalProduct="@{viewModel.productLiveData.body}"
+            app:adapterHorizontalProduct="@{viewModel.productLiveData}"
             tools:listitem="@layout/item_horizontal_product"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -28,7 +28,7 @@
             android:layout_below="@id/viewpager"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
-            app:adapterProduct="@{viewModel.productLiveData.body}"
+            app:adapterProduct="@{viewModel.productLiveData}"
             tools:visibility="visible"
             tools:listitem="@layout/item_product" />
     </RelativeLayout>

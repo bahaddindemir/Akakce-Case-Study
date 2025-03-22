@@ -52,13 +52,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ProductViewHolder.Dele
 
   private fun observeProductResource() {
     viewModel.productLiveData.observe(viewLifecycleOwner) { resource ->
-      Log.w(tag, resource.body?.result.toString())
+      Log.w(tag, resource?.result.toString())
       showLoading()
-      if (resource.isSuccessful) {
+      if (resource != null) {
         hideLoading()
         binding.productRecycler.visibility = View.VISIBLE
 
-        resource.body?.result?.nextUrl?.let {
+        resource.result?.nextUrl?.let {
           nextUrl = it
         }
       } else {
@@ -67,10 +67,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ProductViewHolder.Dele
       }
     }
     viewModel.nextProductLiveData.observe(viewLifecycleOwner) { resource ->
-      if (resource.isSuccessful) {
-        productAdapter.addProductItemList(resource.body?.result?.products)
+      if (resource != null) {
+        productAdapter.addProductItemList(resource.result?.products)
 
-        resource.body?.result?.nextUrl?.let {
+        resource.result?.nextUrl?.let {
           nextUrl = it
         }
       }

@@ -21,6 +21,12 @@ object NetworkServicesModule {
                        .readTimeout(30, TimeUnit.SECONDS)
                        .writeTimeout(30, TimeUnit.SECONDS)
                        .connectTimeout(30, TimeUnit.SECONDS)
+                       .addInterceptor { chain ->
+                           val newRequest = chain.request().newBuilder()
+                               .addHeader("Accept", "application/json")
+                               .build()
+                           chain.proceed(newRequest)
+                       }
                        .build()
   }
 
